@@ -229,16 +229,9 @@ export default class DropZoner extends BaseComponent {
             // this.loadNextEntry(new Map(), entries)
             let index = 0
             for (const entry of entries) {
-                if (entry) {
-                    if (entry.name.match(/\.zip$/)) {
-                        this.loadZip(items[index].getAsFile())
-                    } else {
-                        this.scanFiles(entry, fileMap)
-                    }
-                }
+                if (entry) this.scanFiles(entry, fileMap)
                 index++
             }
-            this.emit('drop', {files: fileMap})
             return
         }
 
@@ -257,9 +250,12 @@ export default class DropZoner extends BaseComponent {
      * @param {Map<string, File>} fileMap
      */
     scanFiles(entry, fileMap) {
+        const ctx = this
+        console.log({entry})
         if (entry.isFile) {
             const onSuccess = file => {
                 fileMap.set(entry.fullPath, file)
+                ctx.emit('drop', {files: fileMap})
             }
             const onError = () => console.error(`Could not load file: ${entry.fullPath}`)
             entry.file(onSuccess, onError)

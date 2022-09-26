@@ -91,6 +91,7 @@ export default class ViewerModule {
      * @param  {Map<string, File>} fileMap
      */
     loadFile(fileMap) {
+        console.log({fileMap})
         let fileInfo = null
         Array.from(fileMap).forEach(([path, file]) => {
             console.log({file})
