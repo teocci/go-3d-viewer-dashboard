@@ -1,0 +1,59 @@
+/**
+ * Created by RTT.
+ * Author: teocci@yandex.com on 2022-8월-24
+ */
+
+:root {
+    --white: hsl(0, 0%, 100%);
+    --white-a80: hsla(0, 0%, 100%, .8);
+
+
+    --light-gray: hsl(0, 0%, 96%);
+    --light-gray-l87: hsl(0, 0%, 87%);
+    --light-gray-l80: hsl(0, 0%, 80%);
+    --gray: hsl(0, 0%, 50%);
+
+    --darker: hsl(210, 13%, 12%);
+    --darker-a15: hsla(210, 13%, 12%, .15);
+    --darker-a10: hsla(210, 13%, 12%, .1);
+
+    --font-light-color: hsl(0, 0%, 100%);
+    --font-light-color-l60: hsl(0, 0%, 60%);
+    --font-light-color-l20: hsl(0, 0%, 20%);
+
+    --font-mild-color: hsl(210, 1%, 40%);
+    --font-dark-color: hsl(210, 2%, 20%);
+
+    --bg-white: hsl(0, 0%, 100%);
+    --bg-light-gray: hsl(0, 0%, 96%);
+    --bg-light-gray-l93: hsl(0, 0%, 93%);
+    --bg-light-gray-l86: hsl(0, 0%, 86%);
+
+    --bg-black: hsl(0, 0%, 0%);
+    --bg-black-a75: hsla(0, 0%, 0%, .75);
+    --bg-black-a03: hsla(0, 0%, 0%, .3);
+
+    --gray-base: hsl(210, 1%, 40%);
+
+    --dark-gray-bg: hsl(210, 2%, 20%);
+
+    --main-light-color: hsl(211, 100%, 79%);
+    --main-color: hsl(211, 100%, 57%);
+    --main-accent-color: hsl(211, 75%, 40%);
+    --main-dark-color: hsl(211, 75%, 34%);
+    --main-darker-color: hsl(211, 76%, 23%);
+    --main-contrast-color: hsl(263, 10.6%, 24%);
+
+    --main-color-a40: hsla(211, 100%, 57%, .4);
+    --main-darker-color-a20: hsla(211, 76%, 23%, .2);
+
+    --model-width: 65vw;
+    --dashboard-width: 35vw;
+
+    --footer-height: 32px;
+    --toolbar-i-size: 2rem;
+    --toolbar-icon-size: 1.25rem;
+
+    --z-summary: 100;
+    --z-modal: 200;
+}
