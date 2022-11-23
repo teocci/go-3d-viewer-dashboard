@@ -4,45 +4,56 @@
  */
 import BaseComponent from '../../base/base-component.js'
 
+const EVENT_CAMERA_CONTROL_EVENT = 'on-cc-event'
+const EVENT_FILE_CONTROL_OPEN_EVENT = 'on-open-event'
+
+const CAMERA_CONTROL_ROTATE = 'rotate'
+const CAMERA_CONTROL_PAN = 'pan'
+const CAMERA_CONTROL_ZOOM = 'zoom'
+const CAMERA_CONTROL_RESET = 'reset'
+const FILE_CONTROL_OPEN = 'open'
+
+const CAMERA_CONTROLS = {
+    [CAMERA_CONTROL_ROTATE]: {
+        id: CAMERA_CONTROL_ROTATE,
+        name: '회전',
+        icon: 'fa-arrows-rotate',
+    },
+    [CAMERA_CONTROL_PAN]: {
+        id: CAMERA_CONTROL_PAN,
+        name: '이동',
+        icon: 'fa-arrow-right-arrow-left',
+    },
+    [CAMERA_CONTROL_ZOOM]: {
+        id: CAMERA_CONTROL_ZOOM,
+        name: '줌',
+        icon: 'fa-magnifying-glass',
+    },
+    [CAMERA_CONTROL_RESET]: {
+        id: CAMERA_CONTROL_RESET,
+        name: '초기화',
+        icon: 'fa-clock-rotate-left',
+    },
+    [FILE_CONTROL_OPEN]: {
+        id: FILE_CONTROL_OPEN,
+        name: '파일 열기',
+        icon: 'fa-folder-open',
+    },
+}
+
 export default class Toolbar extends BaseComponent {
     static TAG = 'toolbar'
 
-    static LISTENER_CAMERA_CONTROL_EVENT = 'on-cc-event'
-    static LISTENER_FILE_CONTROL_OPEN_EVENT = 'on-open-event'
+    static EVENT_CAMERA_CONTROL_EVENT = EVENT_CAMERA_CONTROL_EVENT
+    static EVENT_FILE_CONTROL_OPEN_EVENT = EVENT_FILE_CONTROL_OPEN_EVENT
 
-    static CAMERA_CONTROL_ROTATE = 'rotate'
-    static CAMERA_CONTROL_PAN = 'pan'
-    static CAMERA_CONTROL_ZOOM = 'zoom'
-    static CAMERA_CONTROL_RESET = 'reset'
-    static FILE_CONTROL_OPEN = 'open'
+    static CAMERA_CONTROL_ROTATE = CAMERA_CONTROL_ROTATE
+    static CAMERA_CONTROL_PAN = CAMERA_CONTROL_PAN
+    static CAMERA_CONTROL_ZOOM = CAMERA_CONTROL_ZOOM
+    static CAMERA_CONTROL_RESET = CAMERA_CONTROL_RESET
+    static FILE_CONTROL_OPEN = FILE_CONTROL_OPEN
 
-    static CAMERA_CONTROLS = [
-        {
-            id: Toolbar.CAMERA_CONTROL_ROTATE,
-            name: '회전',
-            icon: 'fa-arrows-rotate',
-        },
-        {
-            id: Toolbar.CAMERA_CONTROL_PAN,
-            name: '이동',
-            icon: 'fa-arrow-right-arrow-left',
-        },
-        {
-            id: Toolbar.CAMERA_CONTROL_ZOOM,
-            name: '줌',
-            icon: 'fa-magnifying-glass',
-        },
-        {
-            id: Toolbar.CAMERA_CONTROL_RESET,
-            name: '초기화',
-            icon: 'fa-clock-rotate-left',
-        },
-        {
-            id: Toolbar.FILE_CONTROL_OPEN,
-            name: '파일 열기',
-            icon: 'fa-folder-open',
-        },
-    ]
+    static CAMERA_CONTROLS = CAMERA_CONTROLS
 
     constructor(element) {
         super(element)
@@ -60,9 +71,10 @@ export default class Toolbar extends BaseComponent {
         camControls.classList.add('camera-controls')
 
         const list = document.createElement('ul')
-        list.classList.add('list-unstyled')
+        list.classList.add('list-pain')
 
-        for (const control of Toolbar.CAMERA_CONTROLS) {
+        const controls = Object.values(CAMERA_CONTROLS)
+        for (const control of controls) {
             const li = document.createElement('li')
             const icon = document.createElement('i')
             icon.classList.add('fa-solid', control.icon, 'fa-fw')
@@ -71,21 +83,26 @@ export default class Toolbar extends BaseComponent {
             li.appendChild(icon)
             list.appendChild(li)
 
+            console.log({key: control.id})
             this.controls.set(control.id, icon)
         }
 
         camControls.appendChild(list)
         this.placeholder.appendChild(camControls)
 
-        this.activateControlByKey(Toolbar.CAMERA_CONTROL_ROTATE)
+        this.activateControlByKey(CAMERA_CONTROL_ROTATE)
     }
 
     initListeners() {
-        for (const [key, control] of this.controls.entries()) {
-            control.onclick = (e) => {
-                if (key === Toolbar.FILE_CONTROL_OPEN) {
-                    this.callListener(Toolbar.LISTENER_FILE_CONTROL_OPEN_EVENT, e)
-                } else this.updateControl(e, key)
+        const controls = this.controls.entries()
+        for (const [key, control] of controls) {
+            console.log({key}, {control})
+            control.onclick = e => {
+                if (key === FILE_CONTROL_OPEN) {
+                    this.emit(EVENT_FILE_CONTROL_OPEN_EVENT, e)
+                    return
+                }
+                this.updateControl(e, key)
             }
         }
     }
@@ -95,36 +112,38 @@ export default class Toolbar extends BaseComponent {
         if (this.isControlActive(control)) return
 
         this.deactivateControls()
-        this.activateControlByKey(key === Toolbar.CAMERA_CONTROL_RESET ? Toolbar.CAMERA_CONTROL_ROTATE : key)
+        this.activateControlByKey(key === CAMERA_CONTROL_RESET ? CAMERA_CONTROL_ROTATE : key)
 
-        this.callListener(Toolbar.LISTENER_CAMERA_CONTROL_EVENT, e, key)
+        this.emit(EVENT_CAMERA_CONTROL_EVENT, e, key)
     }
 
     activateControlByKey(key) {
-        const control = this.controls.get(key)
-        this.activateControl(control)
+        const $control = this.controls.get(key)
+        this.activateControl($control)
     }
 
-    activateControl(control) {
-        control.classList.add('active')
+    activateControl($control) {
+        $control.classList.add('active')
+        $control.parentElement.classList.add('active')
     }
 
     deactivateControlByKey(key) {
-        const control = this.controls.get(key)
-        this.deactivateControl(control)
+        const $control = this.controls.get(key)
+        this.deactivateControl($control)
     }
 
-    deactivateControl(control) {
-        control.classList.remove('active')
+    deactivateControl($control) {
+        $control.classList.remove('active')
+        $control.parentElement.classList.remove('active')
     }
 
     deactivateControls() {
-        this.controls.forEach(control => {
-            this.deactivateControl(control)
+        this.controls.forEach($control => {
+            this.deactivateControl($control)
         })
     }
 
-    isControlActive(control) {
-        return control.classList.contains('active')
+    isControlActive($control) {
+        return $control.classList.contains('active')
     }
 }

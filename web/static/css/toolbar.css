@@ -2,7 +2,7 @@
  * Created by RTT.
  * Author: teocci@yandex.com on 2022-8월-23
  */
-.list-unstyled {
+.list-pain {
     padding-left: 0;
     list-style: none;
 }
@@ -20,34 +20,39 @@
 }
 
 .list-inline,
-.list-unstyled {
+.list-pain {
     margin-top: 0;
     margin-bottom: 0;
 }
 
-.view-holder {
+.view-wrapper {
     overflow: hidden;
 }
 
-.view-holder .toolbar {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    left: 15px;
-    color: var(--font-mild-color);
+.view-wrapper .toolbar {
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--sidebar-width);
+    color: var(--inactive-font);
+    z-index: 1020;
+    padding: 8px 0;
+    background-color: var(--accent-bg-color);
+    border-right: 1px solid var(--main-border-color);
 }
 
-.view-holder:hover .camera-controls,
-.view-holder:hover .display-controls {
+.view-wrapper:hover .camera-controls,
+.view-wrapper:hover .display-controls {
     opacity: 1;
 }
 
-.view-holder:hover .active {
-    color: var(--font-dark-color);
+.view-wrapper:hover .active {
+    color: var(--active-font);
     opacity: 1;
 }
 
@@ -88,21 +93,52 @@
     cursor: not-allowed;
 }
 
-.list-unstyled i {
+.list-pain > li {
+    position: relative;
+    color: inherit;
+    display: grid;
+    padding: 0;
+    place-content: center;
+    height: 48px;
+    width: 56px;
+}
+
+.list-pain > li::before {
+    display: none;
+    content: " ";
+    position: absolute;
+    left: 8px;
+    top: 12px;
+    bottom: 12px;
+    width: 4px;
+    border-radius: 2px;
+    background-image: linear-gradient(0.01deg, rgb(245, 95, 62) 0.01%, rgb(255, 136, 51) 99.99%);
+}
+
+.list-pain > li:hover {
+    background: var(--contrast-bg-color-a16);
+    color: var(--light-color);
+}
+
+.list-pain > li.active::before {
+    display: block;
+}
+
+.list-pain i {
     height: var(--toolbar-i-size);
     width: var(--toolbar-i-size);
     display: flex;
     align-items: center;
 }
-.list-unstyled i:before {
+
+.list-pain i:before {
     font-size: var(--toolbar-icon-size);
 }
-
 
 [data-cooltip]:after {
     content: attr(data-cooltip);
     z-index: 5;
-    margin-left: 1rem;
+    margin-left: 2rem;
     padding: 5px;
     border-radius: 3px;
     background-color: var(--dark-gray-bg);
@@ -138,7 +174,6 @@
 [data-cooltip-position="bottom"]:after {
     left: 50%;
     margin-left: 0;
-    -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
 }
 

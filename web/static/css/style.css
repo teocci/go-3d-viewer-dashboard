@@ -19,15 +19,55 @@
 @import "dropdown.css";
 @import "connection.css";
 
+body {
+    background-color: var(--main-bg-color);
+}
+
+header {
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    flex-shrink: 0;
+    height: var(--header-height);
+    background: var(--accent-bg-color);
+    user-select: none;
+}
+
+header > .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    height: 100%;
+}
+
+header > .logo-wrapper {
+    width: var(--sidebar-width);
+}
+
+.title-wrapper > h2 {
+    color: var(--natural-color);
+}
+
+.title-wrapper > h2 > span {
+    color: var(--base-color);
+}
+
+header .logo {
+    height: var(--logo-size);
+    width: var(--logo-size);
+}
+
 main {
     width: 100vw;
-    height: calc(100vh - var(--footer-height));
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(17, 18, 23);
 }
 
+main > section {
+    flex: 1
+}
 footer {
     height: var(--footer-height);
     line-height: 2rem;
@@ -43,18 +83,18 @@ footer .copy {
     white-space: nowrap;
 }
 
-#dashboard {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    width: var(--dashboard-width);
-    height: 100%;
-    background: var(--gray);
-    color: var(--light-gray-l87);
-    font-size: 2rem;
-    border-left: 1px solid var(--dark-gray-bg);
-}
+/*#dashboard {*/
+/*    display: flex;*/
+/*    flex-flow: row wrap;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    width: var(--dashboard-width);*/
+/*    height: 100%;*/
+/*    background: var(--gray);*/
+/*    color: var(--light-gray-l87);*/
+/*    font-size: 2rem;*/
+/*    border-left: 1px solid var(--dark-gray-bg);*/
+/*}*/
 
 .hidden {
     display: none !important;

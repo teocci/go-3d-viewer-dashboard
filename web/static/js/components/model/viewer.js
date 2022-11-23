@@ -417,7 +417,7 @@ export default class Viewer extends BaseComponent {
         this.resizeObserver = new ResizeObserver(entries => this.onResize(entries))
         this.resizeObserver.observe(this.placeholder)
 
-        this.toolbar.addListener(Toolbar.LISTENER_CAMERA_CONTROL_EVENT, (e, params) => this.onToolbarEvent(e, params[0]))
+        this.toolbar.addListener(Toolbar.EVENT_CAMERA_CONTROL_EVENT, (e, params) => this.onToolbarEvent(e, params))
     }
 
     initMesh(geometry) {
@@ -452,12 +452,12 @@ export default class Viewer extends BaseComponent {
 
     appendElements() {
         const wrapper = document.createElement('div')
-        wrapper.classList.add('view-holder')
+        wrapper.classList.add('view-wrapper')
 
         const viewer = this.$viewer
         viewer.appendChild(this.renderer.domElement)
 
-        wrapper.append(viewer, this.stats.dom, this.toolbar.dom)
+        wrapper.append(this.toolbar.dom, viewer, this.stats.dom)
 
         this.dom = wrapper
         if (!isNull(this.holder)) this.holder.appendChild(wrapper)

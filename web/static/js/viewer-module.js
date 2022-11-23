@@ -27,7 +27,6 @@ export default class ViewerModule {
 
         this.initElement()
         this.initListeners()
-        // this.initViewers()
 
         console.log({viewers: this.viewers})
     }
@@ -58,17 +57,6 @@ export default class ViewerModule {
         this.placeholder.appendChild($model)
     }
 
-    initViewers() {
-        ViewerModule.FORMAT_LIST.forEach(f => {
-            const element = document.createElement('div')
-            element.classList.add('view-holder')
-            this.placeholder.appendChild(element)
-
-            const viewer = new Viewer(element)
-            this.viewers.set(f.type, viewer)
-        })
-    }
-
     initListeners() {
         this.dropZoner.on('drop', ({files}) => this.loadFile(files))
         this.dropZoner.on('dropstart', () => this.showSpinner())
@@ -81,7 +69,7 @@ export default class ViewerModule {
         $viewers.classList.remove('hidden')
 
         const viewer = new Viewer($viewers)
-        viewer.toolbar.addListener(Toolbar.LISTENER_FILE_CONTROL_OPEN_EVENT, () => {
+        viewer.toolbar.addListener(Toolbar.EVENT_FILE_CONTROL_OPEN_EVENT, () => {
             ctx.reset()
         })
 
@@ -170,6 +158,17 @@ export default class ViewerModule {
         this.hideSpinner()
     }
 
+    reset() {
+        this.showSpinner()
+        setTimeout(() => {
+            this.viewers.clear()
+            this.hideViewers()
+            this.destroyViewers()
+            this.dropZoner.show()
+            this.hideSpinner()
+        }, 500)
+    }
+
     showViewers() {
         const $viewers = document.getElementById('viewers')
         $viewers.classList.remove('hidden')
@@ -203,12 +202,5 @@ export default class ViewerModule {
             if (f.type !== FBXLoader.TAG) viewer.onResize()
             viewer.animate()
         })
-    }
-
-    reset() {
-        this.showSpinner()
-        setTimeout(() => {
-            location.reload()
-        }, 500)
     }
 }

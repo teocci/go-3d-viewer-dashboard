@@ -5,7 +5,6 @@
 
 #file-loader {
     display: flex;
-    flex-grow: 1;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -13,7 +12,7 @@
 
 .dropper {
     width: 100%;
-    max-width: 50vw;
+    max-width: 35vw;
     border-radius: 0.5em;
     background: var(--bg-light-gray);
     padding: 2em;
@@ -64,7 +63,7 @@
 /*}*/
 
 .file-selector label {
-    color: var(--font-dark-color);
+    color: var(--base-color);
     border: 0;
     border-radius: 3px;
     font-size: 1rem;
@@ -75,15 +74,13 @@
     display: inline-block;
     overflow: hidden;
     padding: 0.625rem 1.25rem;
-    transition: ease 0.2s, background;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+    transition: background ease 250ms, color cubic-bezier(0.4, 0, 0.2, 1) 250ms;
     user-select: none;
 }
 
 .file-selector label:hover {
-    background: var(--bg-light-gray);
+    color: var(--darker);
+    background: var(--base-color);
 }
 
 .file-selector label i {

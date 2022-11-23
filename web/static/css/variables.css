@@ -37,25 +37,50 @@
 
     --dark-gray-bg: hsl(210, 2%, 20%);
 
+
+    --light-pastel-color: hsl(22, 100%, 92%);
+    --pastel-color: hsl(13, 92%, 81%);
+
+    --gradient-color: hsl(344, 70%, 58%);
+    --natural-color: hsl(21, 100%, 97%);
+
+    --light-color: hsl(25, 100%, 60%);
+    --base-color: hsl(27, 90%, 55%);
+    --accent-color: hsl(11, 90%, 60%);
+
+    --active-font: hsl(240, 19%, 83%);
+    --inactive-font: hsla(240, 19%, 83%, .65);
+
     --main-light-color: hsl(211, 100%, 79%);
     --main-color: hsl(211, 100%, 57%);
     --main-accent-color: hsl(211, 75%, 40%);
     --main-dark-color: hsl(211, 75%, 34%);
     --main-darker-color: hsl(211, 76%, 23%);
     --main-contrast-color: hsl(263, 10.6%, 24%);
+    --main-bg-color: hsl(230, 15%, 7.8%);
+    --accent-bg-color: hsl(214, 13%, 11%);
+    --contrast-bg-color: hsl(240, 19%, 83%);
+    --contrast-bg-color-a16: hsla(240, 19%, 83%, .16);
+
+    --main-border-color: hsl(240, 19%, 83%, .07);
 
     --main-color-a40: hsla(211, 100%, 57%, .4);
     --main-darker-color-a20: hsla(211, 76%, 23%, .2);
 
+    --header-height: 56px;
+    --footer-height: 32px;
+
+    --logo-size: 32px;
+
+    --sidebar-width: 57px;
+
     --model-width: 65vw;
     --dashboard-width: 35vw;
-    
-    
+
     --summary-width: 280px;
     --modal-width: 940px;
     --modal-height: 860px;
 
-    --footer-height: 32px;
     --toolbar-i-size: 2rem;
     --toolbar-icon-size: 1.25rem;
 
