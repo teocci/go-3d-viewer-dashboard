@@ -51,39 +51,39 @@ export default class DropZoner extends BaseComponent {
         const $dropper = document.createElement('div')
         $dropper.classList.add('dropper')
 
-        const p = document.createElement('p')
-        p.textContent = '이 곳으로 stl 또는 fbx 파일을 드래그하세요.'
+        const $p = document.createElement('p')
+        $p.textContent = '이 곳으로 stl 또는 fbx 파일을 드래그하세요.'
 
         const $fileSelector = document.createElement('div')
         $fileSelector.classList.add('file-selector')
 
-        const input = document.createElement('input')
-        input.id = 'file-input'
-        input.type = 'file'
-        input.name = 'model'
-        input.accept = '.fbx,.stl'
-        input.hidden = true
+        const $input = document.createElement('input')
+        $input.id = 'file-input'
+        $input.type = 'file'
+        $input.name = 'model'
+        $input.accept = '.fbx,.stl'
+        $input.hidden = true
 
-        const label = document.createElement('label')
-        label.htmlFor = 'file-input'
+        const $label = document.createElement('label')
+        $label.htmlFor = 'file-input'
 
         // const icon = document.createElement('img')
         // icon.src = './img/upload-btn.svg'
         // icon.alt = 'upload-btn'
-        const icon = document.createElement('i')
-        icon.classList.add('fa-solid', 'fa-upload')
+        // const icon = document.createElement('i')
+        // icon.classList.add('fa-solid', 'fa-upload')
 
-        const span = document.createElement('span')
-        span.textContent = '파일 열기'
+        const $span = document.createElement('span')
+        $span.textContent = '파일 열기'
 
-        $dropper.appendChild(p)
-        label.append(icon, span)
-        $fileSelector.append(input, label)
+        $dropper.appendChild($p)
+        $label.appendChild($span)
+        $fileSelector.append($input, $label)
 
         this.dom.append($dropper, $fileSelector)
 
         this.dropper = $dropper
-        this.input = input
+        this.input = $input
     }
 
     /**

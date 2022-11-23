@@ -715,7 +715,7 @@ export default class Widget extends BaseComponent {
                 break
             case Dropdown.SUBMENU_ITEM_PNG:
             case Dropdown.SUBMENU_ITEM_JPEG:
-                console.log({type})
+                ctx.chartPanel.downloadAs(type)
 
                 break
             default:

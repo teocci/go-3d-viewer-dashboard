@@ -14,7 +14,7 @@
     width: 100%;
     max-width: 35vw;
     border-radius: 0.5em;
-    background: var(--bg-light-gray);
+    background: var(--inactive-font-a16);
     padding: 2em;
     text-align: center;
     user-select: none;
@@ -22,7 +22,7 @@
 
 .dropper p {
     font-size: 1.2rem;
-    color: var(--font-mild-color);
+    color: var(--accent-color);
 }
 
 
@@ -63,24 +63,25 @@
 /*}*/
 
 .file-selector label {
-    color: var(--base-color);
-    border: 0;
-    border-radius: 3px;
-    font-size: 1rem;
-    font-weight: 700;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     cursor: pointer;
     display: inline-block;
     overflow: hidden;
     padding: 0.625rem 1.25rem;
+    color: var(--darker);
+    background: var(--contrast-bg-color);
+    border: 0;
+    border-radius: 3px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     transition: background ease 250ms, color cubic-bezier(0.4, 0, 0.2, 1) 250ms;
     user-select: none;
 }
 
 .file-selector label:hover {
     color: var(--darker);
-    background: var(--base-color);
+    background: var(--accent-color);
 }
 
 .file-selector label i {

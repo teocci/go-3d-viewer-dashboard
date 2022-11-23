@@ -39,6 +39,7 @@ export default class ViewerModule {
 
         const $dropZoner = document.createElement('div')
         $dropZoner.id = 'file-loader'
+        $dropZoner.classList.add('sub-panel')
 
         const $spinner = document.getElementById('spinner')
         const $notifier = document.getElementById('notifier')
@@ -49,9 +50,22 @@ export default class ViewerModule {
 
         const $viewers = document.createElement('div')
         $viewers.id = 'viewers'
-        $viewers.classList.add('hidden')
+        $viewers.classList.add('sub-panel', 'hidden')
 
-        $model.append($dropZoner, $viewers)
+        const $footer = document.createElement('div')
+        $footer.classList.add('sub-panel', 'footer-wrapper')
+
+        const $logo = document.createElement('div')
+        $logo.classList.add('logo-wrapper')
+
+        const $img = document.createElement('img')
+        $img.classList.add('kisti-logo')
+        $img.src = 'img/kisti-logo-plain.png'
+
+        $logo.appendChild($img)
+        $footer.appendChild($logo)
+
+        $model.append($dropZoner, $viewers, $footer)
 
         this.placeholder = $main
         this.placeholder.appendChild($model)

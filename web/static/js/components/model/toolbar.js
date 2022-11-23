@@ -83,7 +83,6 @@ export default class Toolbar extends BaseComponent {
             li.appendChild(icon)
             list.appendChild(li)
 
-            console.log({key: control.id})
             this.controls.set(control.id, icon)
         }
 
@@ -96,7 +95,6 @@ export default class Toolbar extends BaseComponent {
     initListeners() {
         const controls = this.controls.entries()
         for (const [key, control] of controls) {
-            console.log({key}, {control})
             control.onclick = e => {
                 if (key === FILE_CONTROL_OPEN) {
                     this.emit(EVENT_FILE_CONTROL_OPEN_EVENT, e)

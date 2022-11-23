@@ -123,6 +123,21 @@ export default class ChartPanel {
         }
     }
 
+    async downloadAs(type, fn) {
+        const ext = type ?? 'png'
+        console.log({type}, {ext})
+        const filename = fn ?? `img-${new Date().toJSON().slice(0, 10)}.${ext}`
+        const $link = document.createElement('a')
+        // feature detection
+        if ($link.download === undefined) return
+
+        // Browsers that support HTML5 download attribute
+        $link.href = this.$canvas.toDataURL(`image/${ext}`, 1.0)
+        $link.download = filename
+        $link.style.visibility = 'hidden'
+        $link.click()
+    }
+
     toggleMenu() {
         this.menu.toggle()
     }

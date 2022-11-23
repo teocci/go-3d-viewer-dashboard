@@ -34,7 +34,6 @@
     --bg-black-a03: hsla(0, 0%, 0%, .3);
 
     --gray-base: hsl(210, 1%, 40%);
-
     --dark-gray-bg: hsl(210, 2%, 20%);
 
 
@@ -48,8 +47,11 @@
     --base-color: hsl(27, 90%, 55%);
     --accent-color: hsl(11, 90%, 60%);
 
+    /* #ccccdc | rgb(204, 204, 220) */
     --active-font: hsl(240, 19%, 83%);
     --inactive-font: hsla(240, 19%, 83%, .65);
+    --inactive-font-a16: hsla(240, 19%, 83%, .16);
+
 
     --main-light-color: hsl(211, 100%, 79%);
     --main-color: hsl(211, 100%, 57%);
@@ -57,10 +59,17 @@
     --main-dark-color: hsl(211, 75%, 34%);
     --main-darker-color: hsl(211, 76%, 23%);
     --main-contrast-color: hsl(263, 10.6%, 24%);
-    --main-bg-color: hsl(230, 15%, 7.8%);
+
+    /* #111217 | rgb(17, 18, 23) */
+    --main-bg-color: hsl(230, 15%, 8%);
+    /* #181b1f | rgb(24, 27, 31) */
     --accent-bg-color: hsl(214, 13%, 11%);
+    /* #ccccdc | rgb(204, 204, 220) */
     --contrast-bg-color: hsl(240, 19%, 83%);
     --contrast-bg-color-a16: hsla(240, 19%, 83%, .16);
+
+    /* #e9e9ed | rgb(233, 233, 237) */
+    --soft-bg-color: hsl(240, 10%, 92%);
 
     --main-border-color: hsl(240, 19%, 83%, .07);
 
@@ -84,6 +93,8 @@
     --toolbar-i-size: 2rem;
     --toolbar-icon-size: 1.25rem;
 
+    --z-stats: 150;
     --z-summary: 100;
     --z-modal: 200;
+    --z-modal-outside: 190;
 }

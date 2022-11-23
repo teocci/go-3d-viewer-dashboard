@@ -2,6 +2,12 @@
  * Created by RTT.
  * Author: teocci@yandex.com on 2022-11월-01
  */
+.modal-content .data-input .legend,
+.modal-content .data-chart .legend,
+.modal-content .data-source .legend {
+    color: var(--accent-color)
+}
+
 .data-source .axis > .fieldset-content {
     display: flex;
     flex-flow: row wrap;
@@ -11,6 +17,16 @@
 .data-source .axis > .fieldset-content > .field,
 .data-source .axis > .fieldset-content > .fieldset {
     width: 45%;
+}
+
+.fieldset:not(.inline) {
+    border: 1px solid var(--main-border-color);
+    border-radius: 3px;
+    box-shadow: none;
+}
+
+.axis > .fieldset-content > .text-input > input {
+    width: 200px;
 }
 
 
@@ -62,7 +78,6 @@ div.fieldset .fieldset-content {
 fieldset legend {
     font-size: 1rem;
     font-weight: bold;
-    background: var(--bg-white);
 }
 
 .file-input {

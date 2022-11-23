@@ -27,6 +27,15 @@ export default class Dashboard extends BaseComponent {
         const $dashboard = document.createElement('section')
         $dashboard.classList.add('wrapper', 'dashboard-panel')
 
+        const $title = document.createElement('div')
+        $title.classList.add('title', 'widget-title')
+
+        const $h2 = document.createElement('h2')
+        $h2.textContent = '대시보드'
+
+        $title.appendChild($h2)
+        $dashboard.appendChild($title)
+
         this.dom = $dashboard
         this.holder = $main
         if (!isNil(this.holder)) this.holder.appendChild($dashboard)

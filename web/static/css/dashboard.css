@@ -3,6 +3,21 @@
  * Author: teocci@yandex.com on 2022-10월-14
  */
 .dashboard-panel {
-    width: 900px;
-    height: calc(100vh - 100px);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
+
+.dashboard-panel .widget-title {
+    color: var(--active-font);
+    font-size: .7rem;
+    font-weight: 300;
+}
+
+.widget-title > h2 {
+    margin: 0;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    color: var(--accent-color);
+    user-select: none;
 }
