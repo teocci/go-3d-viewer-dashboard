@@ -2,9 +2,9 @@
  * Created by RTT.
  * Author: teocci@yandex.com on 2022-8월-17
  */
-import ZipFSManager from '../utils/zip-fs-manager.js'
-import BaseComponent from '../base/base-component.js'
-import zip from '../libs/zip/zip.js'
+import ZipFSManager from '../../utils/zip-fs-manager.js'
+import BaseComponent from '../../base/base-component.js'
+import zip from '../../libs/zip/zip.js'
 
 export default class DropZoner extends BaseComponent {
     /**
@@ -52,7 +52,7 @@ export default class DropZoner extends BaseComponent {
         $dropper.classList.add('dropper')
 
         const p = document.createElement('p')
-        p.textContent = 'Drag a stl or fbx file to be loaded here.'
+        p.textContent = '이 곳으로 stl 또는 fbx 파일을 드래그하세요.'
 
         const $fileSelector = document.createElement('div')
         $fileSelector.classList.add('file-selector')
@@ -74,7 +74,7 @@ export default class DropZoner extends BaseComponent {
         icon.classList.add('fa-solid', 'fa-upload')
 
         const span = document.createElement('span')
-        span.textContent = 'Upload'
+        span.textContent = '파일 열기'
 
         $dropper.appendChild(p)
         label.append(icon, span)

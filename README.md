@@ -11,6 +11,9 @@ Change the port for the web server on the `config.json` file
 {
   "web": {
     "port": 10010
+  },
+  "ws": {
+    "port": 10020
   }
 }
 ```
@@ -19,7 +22,7 @@ Change the port for the web server on the `config.json` file
 ```bash
 go run main.go
 
-open http://localhost:9028/page.html
+open http://localhost:10010/page.html
 ```
 
 

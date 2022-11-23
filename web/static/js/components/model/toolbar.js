@@ -2,7 +2,7 @@
  * Created by RTT.
  * Author: teocci@yandex.com on 2022-8월-23
  */
-import BaseComponent from '../base/base-component.js'
+import BaseComponent from '../../base/base-component.js'
 
 export default class Toolbar extends BaseComponent {
     static TAG = 'toolbar'

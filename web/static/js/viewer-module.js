@@ -1,10 +1,10 @@
 import STLLoader from './loaders/stl-loader.js'
 import FBXLoader from './loaders/fbx-loader.js'
-import Viewer from './components/viewer.js'
-import DropZoner from './components/drop-zoner.js'
-import Spinner from './components/spinner.js'
-import Notifier from './components/notifier.js'
-import Toolbar from './components/toolbar.js'
+import Viewer from './components/model/viewer.js'
+import DropZoner from './components/model/drop-zoner.js'
+import Spinner from './components/model/spinner.js'
+import Notifier from './components/model/notifier.js'
+import Toolbar from './components/model/toolbar.js'
 
 /**
  * Created by RTT.
@@ -35,10 +35,12 @@ export default class ViewerModule {
     initElement() {
         const $main = document.getElementById('main')
 
-        const $model = document.createElement('div')
-        $model.classList.add('model')
+        const $model = document.createElement('section')
+        $model.classList.add('wrapper', 'model-panel')
 
-        const $dropZoner = document.getElementById('file-loader')
+        const $dropZoner = document.createElement('div')
+        $dropZoner.id = 'file-loader'
+
         const $spinner = document.getElementById('spinner')
         const $notifier = document.getElementById('notifier')
 
@@ -46,7 +48,8 @@ export default class ViewerModule {
         this.spinner = new Spinner($spinner)
         this.notifier = new Notifier($notifier)
 
-        const $viewers = document.getElementById('viewers')
+        const $viewers = document.createElement('div')
+        $viewers.id = 'viewers'
         $viewers.classList.add('hidden')
 
         $model.append($dropZoner, $viewers)

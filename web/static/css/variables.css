@@ -49,6 +49,11 @@
 
     --model-width: 65vw;
     --dashboard-width: 35vw;
+    
+    
+    --summary-width: 280px;
+    --modal-width: 940px;
+    --modal-height: 860px;
 
     --footer-height: 32px;
     --toolbar-i-size: 2rem;

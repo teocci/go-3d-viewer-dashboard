@@ -2,13 +2,13 @@
  * Created by RTT.
  * Author: teocci@yandex.com on 2022-7월-12
  */
-import BaseComponent from '../base/base-component.js'
-import STLLoader from '../loaders/stl-loader.js'
-import ObjLoader from '../loaders/obj-loader.js'
-import FBXLoader from '../loaders/fbx-loader.js'
-import PYLLoader from '../loaders/ply-loader.js'
-import OrbitControls from '../controls/orbit.js'
-import Stats from '../modules/stats.js'
+import BaseComponent from '../../base/base-component.js'
+import STLLoader from '../../loaders/stl-loader.js'
+import ObjLoader from '../../loaders/obj-loader.js'
+import FBXLoader from '../../loaders/fbx-loader.js'
+import PYLLoader from '../../loaders/ply-loader.js'
+import OrbitControls from '../../controls/orbit.js'
+import Stats from '../../modules/stats.js'
 import Toolbar from './toolbar.js'
 
 export default class Viewer extends BaseComponent {
@@ -470,12 +470,10 @@ export default class Viewer extends BaseComponent {
     loadModel(type, url) {
         const ctx = this
         const onLoaded = () => {
-            const cb = this.listener(Viewer.LISTENER_LOADED)
-            if (cb) cb()
+            this.emit(Viewer.LISTENER_LOADED)
         }
         const onError = (error) => {
-            const cb = this.listener(Viewer.LISTENER_ERROR)
-            if (cb) cb(error)
+            this.emit(Viewer.LISTENER_ERROR, error)
         }
 
         let loader

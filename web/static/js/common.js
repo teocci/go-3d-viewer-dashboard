@@ -6,19 +6,42 @@ const REGEX_SNAKE_CASE = /[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[
 const REGEX_CAMEL_CASE = /[^a-zA-Z0-9]+(.)/g
 const REGEX_PASCAL_CASE = /\w\S*/g
 
-const isArray = a => a instanceof Array
-const isDate = d => d instanceof Date
-const isFunction = f => f instanceof Function
-const isObject = o => 'object' === typeof o
+const isObject = o => !!o && 'object' === typeof o
+const isArray = a => !!a && a.constructor === Array
+const isDate = d => !!d && d.constructor ===  Date
+const isFunction = f => !!f && 'function' === typeof f
+
 const isBoolean = b => 'boolean' === typeof b
 const isNumber = n => 'number' === typeof n
 const isString = s => 'string' === typeof s
-const isNull = a => a == null
-const isUndefined = a => a === undefined
 
+const isNull = o => o === null
+const isUndefined = o => o === undefined
+const isNil = o => o == null
 
+const isNumeric = n => (isNumber(n) && !isNaN(n)) || (isString(n) && !isNaN(n) && !isNaN(parseFloat(n)))
 const isStringObj = (s, instance = false) => {
     return typeof s === 'string' || (instance && s instanceof String)
+}
+
+const isEmptyString = s => isString(s) && !s.trim().length
+const isEmptyArray = a => isArray(a) && !a.length
+const isEmptyObject = o => {
+    if (isNil(o)) return false
+    if (o.constructor !== Object) return false
+    for (const i in o) return true
+    return false
+}
+
+const isFalsy = o => !o
+const isTruthy = o => !!o
+
+const isObjectInstance = o => isObject(o) && o.constructor === Object
+const objectHasProperties = o => {
+    if (o == null) return false
+    if (o.constructor !== Object) return false
+    for (const i in o) return true
+    return false
 }
 
 const serialize = o => JSON.stringify(o)
@@ -32,7 +55,8 @@ const toCamelCase = s => s && toSnakeCase(s).toLowerCase()
 const toPascalCase = s => s && trimSpaces(s).toLowerCase()
     .replace(REGEX_PASCAL_CASE, m => `${m.charAt(0).toUpperCase()}${m.substring(1).toLowerCase()}`)
 
-const cloner = (o) => {
+const classExtender = (base, c) => class c extends base{}
+const cloner = o => {
     let idx = 1
     const process = v => {
         if (isArray(v)) return cloneArray(v)
@@ -157,6 +181,18 @@ const hash53 = (str, seed = 0, asString = true) => {
     const h = 4294967296 * (2097151 & h2) + (h1 >>> 0)
 
     return asString ? h.toString(16) : h
+}
+
+const hashID = (size = 6) => {
+    const MASK = 0x3d
+    const LETTERS = 'abcdefghijklmnopqrstuvwxyz'
+    const NUMBERS = '1234567890'
+    const charset = `${NUMBERS}${LETTERS}${LETTERS.toUpperCase()}_-`.split('')
+
+    const bytes = new Uint8Array(size)
+    crypto.getRandomValues(bytes)
+
+    return bytes.reduce((acc, byte) => `${acc}${charset[byte & MASK]}`, '')
 }
 
 function serializeDate() {

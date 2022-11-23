@@ -4,6 +4,7 @@
  */
 import BaseComponent from './base/base-component.js'
 import ViewerModule from './viewer-module.js'
+import Dashboard from './components/dasboard/dashboard.js'
 
 export default class MainModule extends BaseComponent {
     static get instance() {
@@ -20,14 +21,11 @@ export default class MainModule extends BaseComponent {
     }
 
     initElement() {
-        this.dom = document.getElementById('main')
+        const $main = document.getElementById('main')
         viewerModule = ViewerModule.instance
-
-        const $dashboard = document.createElement('div')
-        $dashboard.id = 'dashboard'
-        $dashboard.textContent = 'Dashboard Area'
-
-        this.dom.appendChild($dashboard)
+        
+        this.dashboard = new Dashboard($main)
+        this.dom = $main
     }
 
     initListeners() {}
