@@ -4,6 +4,7 @@ import Bar from '../../charts/bar.js'
 import Scatter from '../../charts/scatter.js'
 import Bubble from '../../charts/bubble.js'
 import LineSeries from '../../charts/line-series.js'
+import BlobUtil from '../../utils/blob-util.js'
 
 /**
  * Created by RTT.
@@ -123,19 +124,33 @@ export default class ChartPanel {
         }
     }
 
-    async downloadAs(type, fn) {
-        const ext = type ?? 'png'
-        console.log({type}, {ext})
-        const filename = fn ?? `img-${new Date().toJSON().slice(0, 10)}.${ext}`
-        const $link = document.createElement('a')
-        // feature detection
-        if ($link.download === undefined) return
+    downloadAs(type, fn) {
+        switch (type) {
+            case Dropdown.MENU_ITEM_CSV:
+                console.log({type})
 
-        // Browsers that support HTML5 download attribute
-        $link.href = this.$canvas.toDataURL(`image/${ext}`, 1.0)
-        $link.download = filename
-        $link.style.visibility = 'hidden'
-        $link.click()
+                break
+            case Dropdown.SUBMENU_ITEM_PNG:
+            case Dropdown.SUBMENU_ITEM_JPEG:
+                this.downloadImage(type)
+
+                break
+            default:
+                throw new Error(`InvalidAction: ${type} file not supported.`)
+        }
+    }
+
+    downloadCSV(fn) {
+        const filename = fn ?? `csv-${new Date().toJSON().slice(0, 10)}.csv`
+
+    }
+
+    downloadImage(type, fn) {
+        const ext = type ?? 'png'
+        const filename = fn ?? `img-${new Date().toJSON().slice(0, 10)}.${ext}`
+
+        const url = this.$canvas.toDataURL(`image/${ext}`, 1.0)
+        BlobUtil.downloadDataURL(url, filename)
     }
 
     toggleMenu() {

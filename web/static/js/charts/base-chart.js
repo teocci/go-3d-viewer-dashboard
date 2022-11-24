@@ -404,6 +404,21 @@ export default class BaseChart {
         this.binders.push(b)
     }
 
+    headers() {
+        const {x} = this.binders[0]
+        const headers = [x]
+        for (const binder of this.binders) {
+            headers.push(binder.y)
+        }
+        return headers
+    }
+
+    asData() {
+        const headers = this.headers()
+        const raw = [...this.chart.data]
+        console.log({headers})
+    }
+
     render() {
         console.log({settings: this.config})
         this.chart = new Chart(this.$canvas, this.config)

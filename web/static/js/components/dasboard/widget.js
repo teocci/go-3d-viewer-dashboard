@@ -710,9 +710,6 @@ export default class Widget extends BaseComponent {
         const ctx = this
         switch (type) {
             case Dropdown.MENU_ITEM_CSV:
-                console.log({type})
-
-                break
             case Dropdown.SUBMENU_ITEM_PNG:
             case Dropdown.SUBMENU_ITEM_JPEG:
                 ctx.chartPanel.downloadAs(type)
