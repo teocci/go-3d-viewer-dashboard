@@ -43,12 +43,12 @@
     margin-right: .5rem;
     cursor: pointer;
     user-select: none;
-    color: var(--main-color);
+    color: var(--af-soft);
     transition: ease 0.2s, color;
 }
 
 .series .actions .action:hover {
-    color: var(--main-contrast-color);
+    color: var(--mbc-contrast);
 }
 
 .series .actions .action:has(.fa-square-plus) {

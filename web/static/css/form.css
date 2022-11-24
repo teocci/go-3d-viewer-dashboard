@@ -18,23 +18,23 @@ form .form-footer {
 }
 
 .form-footer button {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    padding: .2rem 1rem;
     appearance: none;
-    background-color: var(--main-color);
     border: 1px solid var(--darker-a15);
     border-radius: 3px;
     box-shadow: var(--darker-a10) 0 1px 0;
     box-sizing: border-box;
-    color: var(--font-light-color);
-    display: inline-block;
+    background-color: var(--af-soft);
+    color: var(--dark-font);
     font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 1rem;
-    font-weight: bold;
-    line-height: 1.5rem;
-    padding: .2rem 1rem;
-    position: relative;
+    font-weight: 600;
     text-align: center;
+    line-height: 1.5rem;
     text-decoration: none;
-    cursor: pointer;
     user-select: none;
     touch-action: manipulation;
     vertical-align: middle;
@@ -47,26 +47,110 @@ form .form-footer {
 }
 
 .form-footer button:hover {
-    background-color: var(--main-contrast-color);
+    background-color: var(--accent-font);
+    color: var(--dark-font);
 }
 
 .form-footer button:focus {
-    box-shadow: var(--main-color-a40) 0 0 0 3px;
+    box-shadow: var(--af-soft-a40) 0 0 0 3px;
     outline: none;
 }
 
 .form-footer button:disabled {
-    background-color: var(--main-light-color);
+    background-color: var(--ac-pastel-a40);
+    border-color: var(--darker-a10);
+    color: var(--mbc-contrast-a16);
+    cursor: default;
+}
+
+.form-footer button:not([disabled]):active {
+    background-color: var(--af-hard);
+    box-shadow: var(--af-hard-a20) 0 1px 0 inset;
+}
+
+.form-footer .cancel-btn {
+    color: var(--dark-font);
+    background-color: var(--mbc-contrast);
+}
+
+.form-footer .cancel-btn:hover {
+    background: var(--main-contrast-color);
+    color: var(--active-font);
+}
+
+.form-footer .cancel-btn:focus {
+    box-shadow: var(--mbc-contrast-a40) 0 0 0 3px;
+    outline: none;
+}
+
+.form-footer .cancel-btn:disabled {
+    background-color: var(--mbc-contrast-a40);
     border-color: var(--darker-a10);
     color: var(--white-a80);
     cursor: default;
 }
 
 .form-footer button:not([disabled]):active {
-    background-color: var(--main-accent-color);
-    box-shadow: var(--main-darker-color-a20) 0 1px 0 inset;
+    background-color: var(--pc-light);
+    box-shadow: var(--af-hard-a20) 0 1px 0 inset;
 }
 
-.form-content  input:focus {
-    outline-color: var(--main-color);
+
+
+
+.form-content input {
+    cursor: pointer;
+}
+
+.form-content input:focus {
+    outline-color: var(--af-soft);
+}
+
+.form-content input[type="radio"] {
+    width: 1.15em;
+    height: 1.15em;
+    margin-right: 0.5rem;
+    appearance: none;
+    accent-color: var(--accent-color);
+    border: 0.2em solid var(--mbc-contrast);
+    background-color: var(--main-border-color);
+    border-radius: 50%;
+}
+
+.form-content input[type="radio"]:focus-visible {
+    outline: 0.2em solid var(--ac-pastel);
+    outline-offset: 0;
+}
+
+.form-content input[type="radio"] {
+    box-shadow: 0 0 0 1px var(--main-border-color);
+}
+
+.form-content input[type="radio"]:hover {
+    background-color: var(--mbc-contrast);
+    border: 0.2em solid var(--accent-color);
+}
+
+.form-content input[type="radio"]:checked {
+    background-color: var(--accent-color);
+}
+
+.form-content input[type="text"] {
+    display: inline-block;
+    background: var(--mbc-contrast);
+    border: 2px solid var(--main-border-color);
+    color: var(--dark-font);
+    font-weight: 500;
+}
+
+.form-content select {
+    background: var(--mbc-contrast);
+    border: 2px solid var(--main-border-color);
+    color: var(--dark-font);
+    font-weight: 500;
+}
+
+.form-content option:hover,
+.form-content option:active {
+    background: var(--af-soft);
 }

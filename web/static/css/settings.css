@@ -2,10 +2,11 @@
  * Created by RTT.
  * Author: teocci@yandex.com on 2022-11월-01
  */
+
 .modal-content .data-input .legend,
 .modal-content .data-chart .legend,
 .modal-content .data-source .legend {
-    color: var(--accent-color)
+    color: var(--af-soft)
 }
 
 .data-source .axis > .fieldset-content {
@@ -87,7 +88,11 @@ fieldset legend {
 }
 
 .file-input .file-info {
+    display: flex;
+    align-items: center;
     margin-left: .5rem;
+    font-size: .7rem;
+    font-weight: 500;
 }
 
 .file-input input::file-selector-button {
@@ -96,31 +101,32 @@ fieldset legend {
 
 .file-input .file-btn,
 .connect .connect-btn {
-    background: var(--main-color);
-    color: var(--font-light-color);
-    border: 0;
-    border-radius: 3px;
-    font-size: .75rem;
-    font-weight: bold;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    cursor: pointer;
     display: inline-block;
     overflow: hidden;
     padding: 0 1rem;
-    line-height: 1.5rem;
-    transition: ease 0.2s, background;
-    cursor: pointer;
+    border: 0;
+    border-radius: 3px;
+    background: var(--ac-soft);
+    color: var(--af-dark);
+    font-size: .75rem;
+    font-weight: 500;
+    line-height: 2rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     user-select: none;
+    transition: ease 0.2s, background;
 }
 
 .file-input .file-btn:hover,
 .connect .connect-btn:hover {
     background: var(--main-contrast-color);
+    color: var(--active-font);
 }
 
 .file-input .file-btn:disabled,
 .connect .connect-btn:disabled {
-    background-color: var(--main-light-color);
+    background-color: var(--mbc-contrast-a40);
     border-color: var(--darker-a10);
     color: var(--white-a80);
     cursor: default;
@@ -128,8 +134,8 @@ fieldset legend {
 
 .file-input .file-btn:not([disabled]):active,
 .connect .connect-btn:not([disabled]):active {
-    background-color: var(--main-accent-color);
-    box-shadow: var(--main-darker-color-a20) 0 1px 0 inset;
+    background-color: var(--af-soft-a40);
+    box-shadow: var(--ac-pastel-a40) 0 1px 0 inset;
 }
 
 .file-input .file-btn i {

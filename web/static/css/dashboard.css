@@ -18,6 +18,6 @@
     margin: 0;
     padding-top: 1rem;
     padding-left: 1rem;
-    color: var(--accent-color);
+    color: var(--af-soft);
     user-select: none;
 }

@@ -7,8 +7,13 @@
     gap: 1rem;
 }
 
-.address {
+.connection .item {
     display: flex;
+    line-height: 2rem;
+    align-items: center;
+}
+
+.address {
     gap: 1rem;
 }
 

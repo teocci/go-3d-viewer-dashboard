@@ -36,22 +36,53 @@
     --gray-base: hsl(210, 1%, 40%);
     --dark-gray-bg: hsl(210, 2%, 20%);
 
-
-    --light-pastel-color: hsl(22, 100%, 92%);
-    --pastel-color: hsl(13, 92%, 81%);
-
     --gradient-color: hsl(344, 70%, 58%);
     --natural-color: hsl(21, 100%, 97%);
 
     --light-color: hsl(25, 100%, 60%);
     --base-color: hsl(27, 90%, 55%);
-    --accent-color: hsl(11, 90%, 60%);
+
+
+    /* fe5420 | rgb(254, 84, 32) */
+    --accent-color: hsl(14, 99%, 56%);
+    --ac-soft: hsl(9, 84%, 65%);
+    --ac-punch: hsl(11, 100%, 60%);
+    --accent-color-s90: hsl(11, 90%, 60%);
+
+    --ac-mono-l: hsl(11, 90%, 55%);
+
+    --ac-related-dark: hsl(5, 78%, 59%);
+    --ac-related-warm: hsl(9, 83%, 56%);
+    --ac-related-cold: hsl(3, 85%, 62%);
+    --ac-related-light: hsl(12, 72%, 60%);
+
+    /* f7afa3 | rgb(247, 175, 163) */
+    --ac-pastel: hsl(9, 84%, 80%);
+
+    --pastel-color: hsl(13, 92%, 81%);
+    --pc-light: hsl(22, 100%, 92%);
 
     /* #ccccdc | rgb(204, 204, 220) */
     --active-font: hsl(240, 19%, 83%);
     --inactive-font: hsla(240, 19%, 83%, .65);
     --inactive-font-a16: hsla(240, 19%, 83%, .16);
 
+    /* #181b1f | rgb(24, 27, 31) */
+    --dark-font: hsl(214, 13%, 11%);
+    --accent-font: hsl(11, 87%, 75%);
+    --accent-light-color: hsl(29, 90%, 62%);
+    --accent-pastel-color: hsl(25, 100%, 75%);
+    /* fe6749 | rgb(254, 103, 73) */
+    --af-hard: hsl(10, 99%, 64%);
+    /* 050607 | rgb(5, 6, 7) */
+    --af-soft: hsl(9, 84%, 65%);
+    --af-dark: hsl(210, 17%, 2%);
+
+    --ac-pastel-a40: hsla(9, 84%, 80%, .4);
+    --af-soft-a40: hsla(9, 84%, 65%, .4);
+    --af-hard-a20: hsla(10, 99%, 64%, .2);
+    --mbc-contrast-a40: hsla(240, 19%, 83%, .4);
+    --dark-font-a16: hsla(214, 13%, 11%, .16);
 
     --main-light-color: hsl(211, 100%, 79%);
     --main-color: hsl(211, 100%, 57%);
@@ -64,9 +95,19 @@
     --main-bg-color: hsl(230, 15%, 8%);
     /* #181b1f | rgb(24, 27, 31) */
     --accent-bg-color: hsl(214, 13%, 11%);
+
     /* #ccccdc | rgb(204, 204, 220) */
-    --contrast-bg-color: hsl(240, 19%, 83%);
-    --contrast-bg-color-a16: hsla(240, 19%, 83%, .16);
+    --mbc-contrast: hsl(240, 19%, 83%);
+    --mbc-contrast-a16: hsla(240, 19%, 83%, 0.16);
+
+    /* 4a4e63 | rgb(74, 78, 99) */
+    --mbc-mono-ll: hsl(230, 14%, 34%);
+    /* 161B33 | rgb(22, 27, 51) */
+    --mbc-mono-l: hsl(230, 40%, 14%);
+    /* 2C3563 | rgb(44, 53, 99) */
+    --mbc-mono-r: hsl(230, 38%, 28%);
+    /* 828ab0 | rgb(130, 138, 176) */
+    --mbc-mono-rr: hsl(230, 23%, 60%);
 
     /* #e9e9ed | rgb(233, 233, 237) */
     --soft-bg-color: hsl(240, 10%, 92%);
@@ -75,6 +116,7 @@
 
     --main-color-a40: hsla(211, 100%, 57%, .4);
     --main-darker-color-a20: hsla(211, 76%, 23%, .2);
+
 
     --header-height: 56px;
     --footer-height: 32px;

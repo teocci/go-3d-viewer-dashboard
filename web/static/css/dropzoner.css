@@ -14,7 +14,7 @@
     width: 100%;
     max-width: 35vw;
     border-radius: 0.5em;
-    background: var(--inactive-font-a16);
+    background: var(--accent-bg-color);
     padding: 2em;
     text-align: center;
     user-select: none;
@@ -22,7 +22,7 @@
 
 .dropper p {
     font-size: 1.2rem;
-    color: var(--accent-color);
+    color: var(--active-font);
 }
 
 
@@ -67,8 +67,8 @@
     display: inline-block;
     overflow: hidden;
     padding: 0.625rem 1.25rem;
-    color: var(--darker);
-    background: var(--contrast-bg-color);
+    color: var(--dark-font);
+    background: var(--mbc-contrast);
     border: 0;
     border-radius: 3px;
     font-size: 1rem;
@@ -80,8 +80,8 @@
 }
 
 .file-selector label:hover {
-    color: var(--darker);
-    background: var(--accent-color);
+    color: var(--af-dark);
+    background: var(--ac-soft);
 }
 
 .file-selector label i {

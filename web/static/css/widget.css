@@ -37,8 +37,8 @@
     display: inline-block;
     overflow: hidden;
     padding: 0.625rem 1.25rem;
-    color: var(--darker);
-    background: var(--contrast-bg-color);
+    color: var(--dark-font);
+    background: var(--mbc-contrast);
     border: 0;
     border-radius: 3px;
     font-size: 1rem;
@@ -50,6 +50,6 @@
 }
 
 .add-widget:hover {
-    color: var(--darker);
-    background: var(--accent-color);
+    color: var(--af-dark);
+    background: var(--ac-soft);
 }

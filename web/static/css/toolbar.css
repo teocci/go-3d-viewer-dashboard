@@ -116,8 +116,8 @@
 }
 
 .list-pain > li:hover {
-    background: var(--contrast-bg-color-a16);
-    color: var(--light-color);
+    background: var(--mbc-contrast-a16);
+    color: var(--af-hard);
 }
 
 .list-pain > li.active::before {
@@ -141,18 +141,18 @@
     margin-left: 2rem;
     padding: 5px;
     border-radius: 3px;
-    background-color: var(--dark-gray-bg);
+    background-color: var(--accent-bg-color);
+    color: var(--active-font);
     font-family: "Ubuntu", Arial, sans-serif;
-    text-align: center;
-    color: var(--font-light-color);
-    text-transform: capitalize;
-    transition: all 0.2s ease-in 0.2s;
-    opacity: 0;
-    visibility: hidden;
-    white-space: nowrap;
     font-weight: 400;
     font-size: .8rem;
+    text-align: center;
+    text-transform: capitalize;
+    opacity: 0;
+    white-space: nowrap;
+    visibility: hidden;
     pointer-events: none;
+    transition: all 0.2s ease-in 0.2s;
 }
 
 [data-cooltip]:hover:after {

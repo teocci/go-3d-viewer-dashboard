@@ -56,7 +56,7 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    background: var(--contrast-bg-color-a16);
+    background: var(--mbc-contrast-a16);
     color: var(--active-font);
     line-height: 2rem;
     cursor: move;

@@ -49,10 +49,12 @@ export default class BaseForm extends BaseComponent {
         footer.classList.add('form-footer')
 
         const submitBtn = document.createElement('button')
+        submitBtn.classList.add('form-btn', 'submit-btn')
         submitBtn.textContent = '전송'
         submitBtn.onclick = e => { this.onSubmitClick(e) }
 
         const cancelBtn = document.createElement('button')
+        cancelBtn.classList.add('form-btn', 'cancel-btn')
         cancelBtn.textContent = '취소'
         cancelBtn.onclick = e => { this.onCancelClick(e) }
 
