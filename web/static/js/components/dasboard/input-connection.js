@@ -92,8 +92,11 @@ export default class InputConnection extends BaseComponent {
         return this.fields.get(FIELD_IOT_ID).value
     }
 
+    get buttonStatus() {
+        return this.$button.dataset.status
+    }
+
     set buttonStatus(status) {
-        const $btn = this.$button
         switch (status) {
             case BTN_STATUS_CONNECTED:
             case BTN_STATUS_CONNECTING:
@@ -111,6 +114,8 @@ export default class InputConnection extends BaseComponent {
             default:
                 throw new Error(`InvalidType: type ${status} not supported`)
         }
+
+        const $btn = this.$button
         $btn.dataset.status = status
         $btn.textContent = BTN_STATUSES[status]
     }

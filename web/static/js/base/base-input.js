@@ -98,4 +98,8 @@ export default class BaseInput extends BaseComponent {
     disable() {
         this.input.disabled = true
     }
+
+    reset() {
+        this.value = this.options.value ?? undefined
+    }
 }

@@ -23,6 +23,10 @@ import InputBuilder from './input-builder.js'
 import InputConnection from './input-connection.js'
 import WSClient from '../../ws/WSClient.js'
 
+const STATE_INIT = 0
+const STATE_DATA_LOADED = 1
+const STATE_DATA_RENDERED = 2
+
 const FORM_STATE_INIT = BaseForm.STATE_INIT
 const FORM_STATE_DATA_INPUT = BaseForm.STATE_DATA_INPUT
 const FORM_STATE_DATA_SOURCE = BaseForm.STATE_DATA_SOURCE
@@ -37,9 +41,9 @@ const FILE_MODE = 'file'
 const REALTIME_MODE = 'realtime'
 
 export default class Widget extends BaseComponent {
-    static STATE_INIT = 0
-    static STATE_DATA_LOADED = 1
-    static STATE_DATA_RENDERED = 2
+    static STATE_INIT = STATE_INIT
+    static STATE_DATA_LOADED = STATE_DATA_LOADED
+    static STATE_DATA_RENDERED = STATE_DATA_RENDERED
 
     constructor(element) {
         super(element)
@@ -49,7 +53,7 @@ export default class Widget extends BaseComponent {
 
         this.initWidget()
 
-        this.state.value = Widget.STATE_INIT
+        this.state.value = STATE_INIT
 
         this.settingManager = new ChartSettingManager()
         this.chartPanel = new ChartPanel(this.$content)
@@ -262,6 +266,26 @@ export default class Widget extends BaseComponent {
         }
     }
 
+    showDataChartSection() {
+        const fieldset = this.structure.chart.fieldset
+        fieldset.show()
+    }
+
+    showDataSourceSection() {
+        const fieldset = this.structure.source.fieldset
+        fieldset.show()
+    }
+
+    hideDataChartSection() {
+        const fieldset = this.structure.chart.fieldset
+        fieldset.hide()
+    }
+
+    hideDataSourceSection() {
+        const fieldset = this.structure.source.fieldset
+        fieldset.hide()
+    }
+
     updateMode(mode) {
         const ctx = this
 
@@ -275,11 +299,19 @@ export default class Widget extends BaseComponent {
         const source = this.structure.source
         source.datasets.series?.destroy()
 
+        ctx.hideDataChartSection()
+        ctx.hideDataSourceSection()
+
         const config = this.structure.config
         switch (mode) {
             case FILE_MODE:
                 input.file.show()
                 chart.type.enable()
+
+                if (!isNil(config.input.info)) {
+                    ctx.showDataChartSection()
+                    ctx.showDataSourceSection()
+                }
 
                 break
             case REALTIME_MODE:
@@ -287,6 +319,11 @@ export default class Widget extends BaseComponent {
                 chart.type.disable()
 
                 config.chart.type = LINE_CHART
+
+                if (ctx.wsStatus() === WSClient.STATUS_OPENED) {
+                    ctx.showDataChartSection()
+                    ctx.showDataSourceSection()
+                }
 
                 break
             default:
@@ -490,6 +527,8 @@ export default class Widget extends BaseComponent {
                 throw new Error(`InvalidMode: ${mode} not supported.`)
         }
 
+        this.state.value = STATE_DATA_LOADED
+
         const form = this.structure.form
         form.state = FORM_STATE_DATA_SOURCE
 
@@ -555,8 +594,6 @@ export default class Widget extends BaseComponent {
                     throw new Error(`InvalidMode: ${mode} not supported.`)
             }
         }
-
-        this.state.value = Widget.STATE_DATA_LOADED
     }
 
     initFormListeners() {
@@ -625,7 +662,7 @@ export default class Widget extends BaseComponent {
                     break
                 case InputConnection.STATUS_DISCONNECT:
                     console.log({req})
-                    ctx.websocket.disconnect()
+                    ctx.disconnectWS()
                     break
                 default:
                     throw new Error(`InvalidType: type ${action} not supported`)
@@ -647,11 +684,6 @@ export default class Widget extends BaseComponent {
         }
     }
 
-    openModal() {
-        this.loadModal()
-        this.showModal()
-    }
-
     removeWidget() {
         this.disconnectWS()
 
@@ -661,6 +693,10 @@ export default class Widget extends BaseComponent {
 
     disconnectWS() {
         if (this.websocket) this.websocket.disconnect()
+    }
+
+    wsStatus() {
+        if (this.websocket) return this.websocket.status
     }
 
     clearChart() {
@@ -684,7 +720,7 @@ export default class Widget extends BaseComponent {
             this.hideControl()
             this.chartPanel.render()
 
-            this.state.value = Widget.STATE_DATA_RENDERED
+            this.state.value = STATE_DATA_RENDERED
         }
     }
 
@@ -696,10 +732,17 @@ export default class Widget extends BaseComponent {
                 const data = message.data ?? null
                 if (isNil(data)) throw Error('InvalidMessage: null data')
                 ctx.loadData(data)
+                ctx.updateConnectionField(InputConnection.STATUS_DISCONNECT)
                 break
             case WSClient.CMD_IOT_UPDATED:
                 if (isNil(this.chartPanel)) return
                 this.chartPanel.update(message.data)
+
+                break
+
+            case WSClient.CMD_WS_DISCONNECTED:
+                ctx.updateConnectionField(InputConnection.STATUS_DISCONNECTED)
+                ctx.updateConnectionField(InputConnection.STATUS_CONNECT)
 
                 break
             default:
@@ -749,6 +792,17 @@ export default class Widget extends BaseComponent {
 
                 break
         }
+    }
+
+    updateConnectionField(status) {
+        const connect = this.structure.input.connect
+        if (isNil(connect)) return
+        connect.buttonStatus = status
+    }
+
+    openModal() {
+        this.loadModal()
+        this.showModal()
     }
 
     showModal() {

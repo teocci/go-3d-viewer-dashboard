@@ -5,6 +5,10 @@ import BaseListener from '../base/base-listener.js'
  * Author: teocci@yandex.com on 2022-11월-21
  */
 
+const STATUS_INIT = 'init'
+const STATUS_OPENED = 'opened'
+const STATUS_CLOSED = 'closed'
+
 const CMD_PING = 'ping'
 const CMD_PONG = 'pong'
 
@@ -41,6 +45,10 @@ const EVENT_LIST = [
 ]
 
 export default class WSClient extends BaseListener {
+    static STATUS_INIT = STATUS_INIT
+    static STATUS_OPENED = STATUS_OPENED
+    static STATUS_CLOSED = STATUS_CLOSED
+
     static CMD_PING = CMD_PING
     static CMD_PONG = CMD_PONG
 
@@ -78,6 +86,7 @@ export default class WSClient extends BaseListener {
         this.config['role'] = config.role || ROLE_WEB_CONSUMER
 
         this.ws = null
+        this._status = STATUS_INIT
 
         this.connectionId = null
 
@@ -86,6 +95,10 @@ export default class WSClient extends BaseListener {
         for (name of EVENT_LIST) {
             this.addListener(name, this._onEvents)
         }
+    }
+
+    get status () {
+        return this._status
     }
 
     set onEvents(fnc) {
@@ -115,6 +128,7 @@ export default class WSClient extends BaseListener {
 
         // Implement the onerror method
         this.ws.onerror = e => {
+            this._status = STATUS_CLOSED
             console.log('An error occurred', e)
         }
     }
@@ -125,6 +139,7 @@ export default class WSClient extends BaseListener {
     }
 
     onOpen() {
+        this._status = STATUS_OPENED
         console.log('connection opened')
     }
 
@@ -204,6 +219,7 @@ export default class WSClient extends BaseListener {
     }
 
     onClose(event) {
+        this._status = STATUS_CLOSED
         const message = {
             cmd: CMD_WS_DISCONNECTED,
         }
