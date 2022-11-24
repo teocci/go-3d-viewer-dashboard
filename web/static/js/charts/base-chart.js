@@ -22,6 +22,8 @@ export default class BaseChart {
         this.binders = []
 
         this.groupedByX = true
+        this.isSeries = false
+
         this.mode = null
         this.scales = null
     }
@@ -32,6 +34,10 @@ export default class BaseChart {
 
     get axisKeys() {
         return ['x', 'y']
+    }
+
+    get axisConfigKeys() {
+        return this.isSeries ? ['x'] : this.axisKeys
     }
 
     init(config) {
@@ -257,7 +263,7 @@ export default class BaseChart {
 
     parseAxisConfig(axes) {
         const config = {}
-        const keys = this.axisKeys
+        const keys = this.axisConfigKeys
         for (const key of keys) {
             config[key] = axes[key] ?? null
         }
@@ -404,19 +410,84 @@ export default class BaseChart {
         this.binders.push(b)
     }
 
-    headers() {
-        const {x} = this.binders[0]
-        const headers = [x]
-        for (const binder of this.binders) {
-            headers.push(binder.y)
+    bindersAsKV() {
+        const [first] = this.binders
+        if (!this.isSeries) {
+            const entries = Object.entries(first)
+            const o = {}
+            for (const [key, name] of entries) {
+                o[key] = {key, name, s: 0}
+            }
+
+            return o
         }
-        return headers
+
+        const {x} = first
+        const entries = {x: {key: 'x', name: x, s: 0}}
+        let s = 0
+        for (const binder of this.binders) {
+            const {y} = binder
+            entries[`y-${s}`] = {key: 'y', name: y, s}
+            s++
+        }
+
+        return entries
+
+    }
+
+    bindersAsNames() {
+        const [first] = this.binders
+        if (!this.isSeries) return Object.values(first)
+
+        const {x} = first
+        const keys = [x]
+        for (const binder of this.binders) {
+            const {y} = binder
+            keys.push(y)
+        }
+
+        return keys
     }
 
     asData() {
-        const headers = this.headers()
-        const raw = [...this.chart.data]
-        console.log({headers})
+        const sets = [...this.chart.data.datasets]
+        if (isNil(sets)) return null
+        if (isArray(sets) && sets.length === 0) return null
+
+        const rows = []
+        const binders = this.bindersAsKV()
+        if (!this.isSeries) {
+            const [set] = sets
+            for (const r of set.data) {
+                const row = {}
+                for (const k in binders) {
+                    const b = binders[k]
+                    row[`${k}-${b.name}`] = r[b.key]
+                }
+                rows.push(row)
+            }
+
+            return rows
+        }
+
+        let s = 0
+        for (const set of sets) {
+            let index = 0
+            for (const r of set.data) {
+                const row = rows[index] ?? {}
+                for (const k in binders) {
+                    const b = binders[k]
+                    if (b.s === s) {
+                        row[`${k}-${b.name}`] = r[b.key]
+                    }
+                }
+                if (s === 0) rows.push(row)
+                index++
+            }
+            s++
+        }
+
+        return rows
     }
 
     render() {
@@ -434,7 +505,7 @@ export default class BaseChart {
             this.chart.data.labels.push(data[x])
             this.chart.data.datasets.forEach((dataset, i) => {
                 const {y} = this.binders[i]
-                dataset.data.push(data[y])
+                dataset.data.push({x: data[x], y: data[y]})
             })
             this.chart.update()
         }

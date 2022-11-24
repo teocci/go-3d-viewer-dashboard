@@ -4,7 +4,7 @@ import Bar from '../../charts/bar.js'
 import Scatter from '../../charts/scatter.js'
 import Bubble from '../../charts/bubble.js'
 import LineSeries from '../../charts/line-series.js'
-import BlobUtil from '../../utils/blob-util.js'
+import Downloader from '../../utils/downloader.js'
 
 /**
  * Created by RTT.
@@ -128,12 +128,11 @@ export default class ChartPanel {
         switch (type) {
             case Dropdown.MENU_ITEM_CSV:
                 console.log({type})
-
+                this.downloadCSV(fn)
                 break
             case Dropdown.SUBMENU_ITEM_PNG:
             case Dropdown.SUBMENU_ITEM_JPEG:
                 this.downloadImage(type)
-
                 break
             default:
                 throw new Error(`InvalidAction: ${type} file not supported.`)
@@ -143,6 +142,10 @@ export default class ChartPanel {
     downloadCSV(fn) {
         const filename = fn ?? `csv-${new Date().toJSON().slice(0, 10)}.csv`
 
+        const rows = this.chart.asData()
+        console.log({rows})
+        if (isNil(rows)) throw new Error(`InvalidValue: null rows`)
+        Downloader.exportToCSV(filename, rows)
     }
 
     downloadImage(type, fn) {
@@ -150,7 +153,8 @@ export default class ChartPanel {
         const filename = fn ?? `img-${new Date().toJSON().slice(0, 10)}.${ext}`
 
         const url = this.$canvas.toDataURL(`image/${ext}`, 1.0)
-        BlobUtil.downloadDataURL(url, filename)
+        if (isNil(url)) throw new Error(`InvalidValue: null url`)
+        Downloader.downloadDataURL(url, filename)
     }
 
     toggleMenu() {

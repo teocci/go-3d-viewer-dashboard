@@ -233,9 +233,7 @@ export default class BlobUtil {
      * @returns Promise that resolves with the data URL string
      */
     static blobToDataURL(blob) {
-        return this.blobToBase64String(blob).then(function (base64String) {
-            return `data:${blob.type};base64,${base64String}`
-        })
+        return this.blobToBase64String(blob).then(base64String => `data:${blob.type};base64,${base64String}`)
     }
 
     /**
@@ -304,10 +302,11 @@ export default class BlobUtil {
      * @param canvas - HTMLCanvasElement
      * @param type - the content type (optional, defaults to 'image/png')
      * @param quality - a number between 0 and 1 indicating image quality
-     *                                     if the requested type is 'image/jpeg' or 'image/webp'
+     * if the requested type is 'image/jpeg' or 'image/webp'
      * @returns Promise that resolves with the `Blob`
      */
     static canvasToBlob(canvas, type, quality) {
+        quality = quality ?? 1.0
         if (typeof canvas.toBlob === 'function') {
             return new Promise(resolve => {
                 canvas.toBlob(resolve, type, quality)
@@ -394,7 +393,7 @@ export default class BlobUtil {
     static blobToArrayBuffer(blob) {
         return new Promise((resolve, reject) => {
             const reader = new FileReader()
-            reader.onloadend = function () {
+            reader.onloadend = () => {
                 const result = reader.result ?? new ArrayBuffer(0)
                 resolve(result)
             }

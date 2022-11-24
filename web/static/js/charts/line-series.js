@@ -5,8 +5,10 @@
 import Line from './line.js'
 
 export default class LineSeries extends Line {
-    get axisKeys() {
-        return ['x']
+    constructor(canvas) {
+        super(canvas)
+
+        this.isSeries = true
     }
 
     /**

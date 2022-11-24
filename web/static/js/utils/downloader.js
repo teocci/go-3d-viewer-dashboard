@@ -8,13 +8,12 @@ const CRLF = '\r\n'
 const CHARTSET_UTF8 = 'utf-8'
 const CSV_MIME_TYPE = 'text/csv'
 
-export default class BlobUtil {
-    static exportToCSV = (filename, rows) => {
-        const csv = BlobUtil.arrayToCSV(rows)
-        console.log({csv})
+export default class Downloader {
+    static exportToCSV(filename, rows) {
+        const csv = Downloader.arrayToCSV(rows)
         const type = `${CSV_MIME_TYPE}; charset=${CHARTSET_UTF8};`
 
-        BlobUtil.downloadBlob(csv, filename, type)
+        Downloader.downloadBlob(csv, filename, type)
     }
 
     static arrayToCSV(rows) {
@@ -41,7 +40,7 @@ export default class BlobUtil {
         return [headers, ...rows].map(row => processRow(row)).join(CRLF)  // rows starting on new lines
     }
 
-    static downloadBlob(content, contentType, filename) {
+    static downloadBlob(content, filename, contentType) {
         const blob = new Blob([content], {type: contentType})
 
         if (navigator.msSaveBlob) navigator.msSaveBlob(blob, filename)
