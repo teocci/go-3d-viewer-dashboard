@@ -59,3 +59,7 @@
     left: 33%;
     transform: translate(-50%, -50%);
 }
+
+.logo-wrapper .kisti-logo {
+    height: 4rem;
+}
