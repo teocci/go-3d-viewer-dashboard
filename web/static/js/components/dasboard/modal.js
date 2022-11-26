@@ -31,7 +31,7 @@ export default class Modal extends Draggable {
 
         const $title = document.createElement('div')
         $title.classList.add('title')
-        $title.textContent = 'Add Widget'
+        $title.textContent = '차트 설정'
 
         const $close = document.createElement('div')
         $close.classList.add('close')
