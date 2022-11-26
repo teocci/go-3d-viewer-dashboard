@@ -9,12 +9,15 @@
     color: var(--af-soft)
 }
 
+.data-chart > .fieldset-content,
 .data-source .axis > .fieldset-content {
     display: flex;
     flex-flow: row wrap;
     column-gap: 1rem;
 }
 
+.data-chart > .fieldset-content > .field,
+.data-chart > .fieldset-content > .fieldset,
 .data-source .axis > .fieldset-content > .field,
 .data-source .axis > .fieldset-content > .fieldset {
     width: 45%;
@@ -26,7 +29,8 @@
     box-shadow: none;
 }
 
-.axis > .fieldset-content > .text-input > input {
+.axis > .fieldset-content > .text-input > input,
+.data-chart > .fieldset-content > .text-input > input {
     width: 200px;
 }
 
