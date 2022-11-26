@@ -78,5 +78,5 @@
 }
 
 .modal-wrapper .modal-content {
-    max-height: calc(var(--modal-height) - 65px);
+    max-height: calc(var(--modal-max-height) - 65px);
 }

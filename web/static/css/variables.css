@@ -131,7 +131,8 @@
 
     --summary-width: 280px;
     --modal-width: 940px;
-    --modal-height: 730px;
+    --modal-height: 692px;
+    --modal-max-height: calc(var(--modal-height) + 20px);
     --modal-top: calc(var(--modal-height) / 2);
 
     --toolbar-i-size: 2rem;

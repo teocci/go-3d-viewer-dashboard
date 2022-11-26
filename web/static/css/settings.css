@@ -69,7 +69,7 @@ div.fieldset .fieldset-content {
 
 .fieldset .fieldset-content > .field:not(:last-child, .hidden),
 .fieldset .fieldset-content > .inline:not(:last-child, .hidden) {
-    margin-bottom: .5rem;
+    margin-bottom: .375rem;
 }
 
 .inline .fieldset-content > .field:not(:last-child) {
