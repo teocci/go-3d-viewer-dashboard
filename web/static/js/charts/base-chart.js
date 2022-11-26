@@ -228,7 +228,7 @@ export default class BaseChart {
         const bgOpacity = opacity
 
         const color = axis.color || '#2f7878'
-        const bg = axis.background || '#4bc0c0'
+        const bg = axis.background || axis.color || '#4bc0c0'
 
         return {
             label,
