@@ -42,7 +42,7 @@ const (
 
 const (
 	reqRegisterClient   = "register-client"
-	reqUnregisterClient = "register-client"
+	reqUnregisterClient = "unregister-client"
 	reqConnectIOT       = "connect-iot"
 	reqIOTUpdate        = "iot-update"
 )
