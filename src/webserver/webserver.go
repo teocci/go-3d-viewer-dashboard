@@ -50,6 +50,7 @@ func Start() {
 	router.StaticFS("/3d", http.Dir("web/static/3d"))
 	router.StaticFS("/glsl", http.Dir("web/static/glsl"))
 	router.StaticFS("/json", http.Dir("web/static/json"))
+	router.StaticFS("/vendors", http.Dir("web/static/vendors"))
 
 	router.StaticFile(indexRoute, indexFilePath)
 	router.StaticFile(defaultFaviconRoute, defaultFaviconFilePath)
