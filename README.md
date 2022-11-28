@@ -25,6 +25,23 @@ go run main.go
 open http://localhost:10010/page.html
 ```
 
+## Docker
+
+### Manually
+```bash
+docker build --tag webserver .
+docker run -p 10010:10010 -p 10020:10020 webserver
+```
+
+### Docker compose
+```bash
+docker compose up
+```
+
+Rebuild
+```bash
+docker compose up --build
+```
 
 [1]: https://pkg.go.dev/badge/github.com/teocci/go-3d-viewer-dashboard.svg
 [2]: https://pkg.go.dev/github.com/teocci/go-3d-viewer-dashboard
