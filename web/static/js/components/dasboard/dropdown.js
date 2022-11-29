@@ -19,13 +19,13 @@ export default class Dropdown {
         {
             id: Dropdown.MENU_ITEM_CSV,
             type: Dropdown.MENU_TYPE_ITEM,
-            label: 'csv로 수출',
+            label: 'csv로 내보내기',
             icon: 'fa-file-csv',
         },
         {
             id: Dropdown.MENU_ITEM_EXPORT,
             type: Dropdown.MENU_TYPE_SUBMENU,
-            label: '이미지로 수출',
+            label: '이미지로 내보내기',
             icon: 'fa-file-image',
             items: [
                 {

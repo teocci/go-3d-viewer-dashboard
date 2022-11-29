@@ -1,9 +1,10 @@
-version: "3.9"  # optional since v1.27.0
+version: "3.9"
 services:
   web:
     build:
       dockerfile: Dockerfile
       context: .
+    restart: unless-stopped
     ports:
       - "10010:10010"
       - "10020:10020"
