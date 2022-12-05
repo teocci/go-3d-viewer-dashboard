@@ -3,6 +3,13 @@
  * Author: teocci@yandex.com on 2022-11월-01
  */
 
+
+.modal-content .data-input,
+.modal-content .data-chart,
+.modal-content .data-source {
+    background-color: var(--accent-bg-color);
+}
+
 .modal-content .data-input .legend,
 .modal-content .data-chart .legend,
 .modal-content .data-source .legend {
@@ -14,6 +21,10 @@
     display: flex;
     flex-flow: row wrap;
     column-gap: 1rem;
+}
+
+.data-source > .fieldset-content > .fieldset {
+    background: var(--abc-contrast);
 }
 
 .data-chart > .fieldset-content > .field,

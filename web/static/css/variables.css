@@ -96,6 +96,8 @@
     --main-bg-color: hsl(230, 15%, 8%);
     /* #181b1f | rgb(24, 27, 31) */
     --accent-bg-color: hsl(214, 13%, 11%);
+    /* #22252b | rgb(34, 37, 43) */
+    --abc-contrast: hsl(220, 12%, 15%);
 
     /* #ccccdc | rgb(204, 204, 220) */
     --mbc-contrast: hsl(240, 19%, 83%);
